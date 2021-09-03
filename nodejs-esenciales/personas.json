@@ -1,0 +1,21 @@
+  
+[
+    {
+      "nombre": "Luis",
+      "apPaterno": "Morales",
+      "apMaterno": "ramos",
+      "email": "morales@gmail.com"
+    },
+    {
+      "nombre": "Jesus",
+      "apPaterno": "Morales",
+      "apMaterno": "Ramos",
+      "email": "jesusmorales@gmail.com"
+    },
+    {
+      "nombre": "Francis",
+      "apPaterno": "Ramos",
+      "apMaterno": "Ramos",
+      "email": "francisramos@gmail.com"
+    }
+  ]

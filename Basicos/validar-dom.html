@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Validar Botones</title>
+</head>
+<body>
+    <!-- Utilizando Delegation para Event Handling -->
+    Introduce una Palabra:<input id="text1" onkeyup="validarBotones()" type="text">
+    Introduce una Palabra:<input id="text2" onkeyup="validarBotones()" type="text">
+    Introduce una Palabra:<input id="text3" onkeyup="validarBotones()" type="text">
+
+    <button id="btn1" disabled>Boton 1</button>
+    <button id="btn2" disabled>Boton 2</button>
+
+<script>
+    let word1 = document.getElementById("text1");
+    let word2 = document.getElementById("text2");
+    let word3 = document.getElementById("text3");
+
+    word1.addEventListener("keyup",validarBotones);
+    word2.addEventListener("keyup",validarBotones);
+    word3.addEventListener("keyup",validarBotones);
+
+
+    let buttons = document.getElementsByTagName("button");
+
+    function validarBotones(){
+        let word1Size = word1.value.length;
+        let wordSize2 = word2.value.length;
+        let wordSize3 = word3.value.length;
+        isFull = (word1Size>0 && wordSize2>0 && wordSize3>0)
+        for(button of buttons){
+            button.disabled=!isFull;
+        }
+    }
+
+
+</script>
+
+</body>

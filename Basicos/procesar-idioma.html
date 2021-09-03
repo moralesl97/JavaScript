@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Procesar-Idioma</title>
+    <style>
+        body {
+            background-color: rgb(37, 37, 37);
+            color: aliceblue;
+            padding: 2rem;
+            margin: 0;
+            font-family: 'Architects Daughter', cursive;
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="radio" name="currentLanguage" id="currentLanguage" onclick="ProcesarIdioma(this)" value="english">Ingles 
+    <input type="radio" name="currentLanguage" id="currentLanguage" onclick="ProcesarIdioma(this)" value="espanol"> Espanol
+    <button id="btnUsuario">Procesar</button>
+
+    <div id="message"></div>
+</body>
+
+<script>
+    let saludarIngles = function (){
+        document.getElementById("message").innerHTML = "Hello User";
+    }
+
+    let SaludarEspanol = function(){
+        document.getElementById("message").innerHTML = "Hola Usuario";
+    }
+
+    let eventHandler = saludarIngles;
+     
+    function ProcesarIdioma(radiobutton){
+        let boton = document.getElementById("btnUsuario");
+        boton.removeEventListener("click", eventHandler);
+        if(radiobutton.value == "english"){
+            eventHandler = saludarIngles;
+        }
+        else{
+            eventHandler = SaludarEspanol;
+        }
+        boton.addEventListener("click", eventHandler);
+    };
+
+    
+</script>

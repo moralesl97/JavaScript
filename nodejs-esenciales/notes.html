@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Notes</title>
+</head>
+
+<body>
+    Titulo:<input type="text" id="noteTitle" />
+    Contenido:<input type="text" id="noteContent" />
+
+    <input type="button" value="Guardar Nota" onclick="saveNote()" />
+
+    <ol id="notes">
+
+    </ol>
+
+    <script src="notes.js"></script>
+    <script>
+
+        let notesList = document.getElementById("notes");
+
+
+        showNotes();
+
+        function showNotes() {
+            while (notesList.firstChild)
+                notesList.removeChild(notesList.firstChild);
+
+            fetch('http://localhost:3000/notes/')
+                .then(response => response.json())
+                .then(notes => {
+                    notes.foreach((note) => {
+                        let newNote = document.createElement("li");
+                        newNote.innerHTML = `Titulo: ${note.title} Contenido ${note.content}`;
+                        notesList.appendChild(newNote);
+                    });
+
+                });
+        }
+
+        function saveNote() {
+
+            let noteTitle = document.getElementById("noteTitle");
+            let noteContent = document.getElementById("noteContent");
+
+            fetch('http://localhost:3000/notes/', {
+                method: 'POST',
+                body: JSON.stringify({
+                    title: noteTitle.value,
+                    content: noteContent.value
+                }),
+                headers: {
+                    "Content-type": "application/json"
+                }
+            })
+            .then((response) => response.json())
+            .then((json) => console.log(json))
+            .finally(function () {
+                showNotes();
+            })
+
+        }
+    </script>
+</body>
+
+</html>
